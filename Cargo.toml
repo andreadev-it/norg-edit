@@ -1,0 +1,18 @@
+[package]
+name = "norg-reader"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.80"
+clap = { version = "4.5.3", features = ["derive"] }
+dioxus = { version = "0.5.0", features = ["desktop", "mobile"] }
+dioxus-desktop = "0.5.0"
+itertools = "0.12.1"
+tree-sitter = "0.20.9"
+tree-sitter-norg = "0.1.1"
+
+[dev-dependencies]
+cc = "*"

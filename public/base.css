@@ -1,0 +1,27 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+#main {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+details.heading summary h1,
+details.heading summary h2,
+details.heading summary h3,
+details.heading summary h4,
+details.heading summary h5,
+details.heading summary h6 {
+    display: inline-block;
+    margin: 0;
+    vertical-align: sub;
+}
+
