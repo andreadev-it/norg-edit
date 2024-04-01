@@ -1,5 +1,6 @@
 use crate::components::Hamburger;
-use crate::{components::Menu, utils::FileChosenEvent};
+use crate::components::Menu;
+use crate::events::FileChosenEvent;
 use dioxus::prelude::*;
 
 #[component]
@@ -13,7 +14,9 @@ pub fn Chrome(current_file: String, on_file_chosen: EventHandler<FileChosenEvent
             justify_content: "space-between",
             align_items: "center",
             padding: "10px",
-            background_color: "#eee",
+            background: "linear-gradient(-45deg, #59b480, #4a3c95)",
+            color: "#fff",
+            font_weight: "bold",
 
             Hamburger {
                 on_click: move |_| *is_menu_open.write() = true,
@@ -27,7 +30,10 @@ pub fn Chrome(current_file: String, on_file_chosen: EventHandler<FileChosenEvent
         },
         Menu {
             is_open: is_menu_open,
-            on_file_chosen
+            on_file_chosen: move |evt| {
+                *is_menu_open.write() = false;
+                on_file_chosen(evt);
+            }
         }
     }
 }

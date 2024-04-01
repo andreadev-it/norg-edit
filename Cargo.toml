@@ -2,6 +2,7 @@
 name = "norg-reader"
 version = "0.1.0"
 edition = "2021"
+description = "A rust app to view your .norg files"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -16,3 +17,14 @@ tree-sitter-norg = "0.1.1"
 
 [dev-dependencies]
 cc = "*"
+
+[package.metadata.bundle]
+name = "NorgReader"
+identifier = "com.andreadev.norgreader"
+version = "0.0.1"
+copyright = "Copyright (c) Andrea Dragotta 2024. All rights reserved."
+category = "Productivity"
+short_description = "Open .norg files in a cross-platform app"
+long_description = """
+This app allows you to open your norg files in a visual application instead of neovim.
+"""

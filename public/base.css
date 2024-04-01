@@ -1,6 +1,9 @@
 html,
 body {
     height: 100%;
+    padding: 0px;
+    margin: 0px;
+    font-family: sans-serif;
 }
 
 body {
@@ -9,6 +12,8 @@ body {
 }
 
 #main {
+    padding: 0px;
+    margin: 0px;
     height: 100%;
     display: grid;
     grid-template-rows: auto 1fr;
@@ -24,4 +29,3 @@ details.heading summary h6 {
     margin: 0;
     vertical-align: sub;
 }
-

@@ -1,5 +1,5 @@
 use crate::components::{Chrome, FileView};
-use crate::utils::FileChosenEvent;
+use crate::events::FileChosenEvent;
 use dioxus::prelude::*;
 
 #[component]

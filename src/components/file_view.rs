@@ -13,14 +13,18 @@ pub fn FileView() -> Element {
 
     let root_node: NorgNode = node_to_item(root, &text()).unwrap();
 
+    dbg!(root.to_sexp());
+
     rsx! {
         div {
             overflow: "auto",
             padding: "10px",
-            max_width: "80ch",
 
-            AutoComponent {
-                node: root_node
+            div {
+                max_width: "80ch",
+                AutoComponent {
+                    node: root_node
+                }
             }
         }
     }

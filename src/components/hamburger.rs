@@ -11,15 +11,15 @@ pub fn Hamburger(on_click: EventHandler<MouseEvent>) -> Element {
             onclick: move |evt| on_click(evt),
 
             div {
-                border_bottom: "solid 3px #000",
+                border_bottom: "solid 3px #fff",
                 margin_bottom: "3px"
             }
             div {
-                border_bottom: "solid 3px #000",
+                border_bottom: "solid 3px #fff",
                 margin_bottom: "3px"
             }
             div {
-                border_bottom: "solid 3px #000"
+                border_bottom: "solid 3px #fff"
             }
         }
     }

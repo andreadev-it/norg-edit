@@ -14,10 +14,15 @@ impl NodeItem for List {
     fn from_node(self: &mut Self, node: Node, source: &str) -> Result<()> {
         let mut cur = node.walk();
 
-        self.children = node
+        let list_items = node
             .children(&mut cur)
             .filter_map(|n| node_to_item(n, source).ok())
             .collect();
+
+        // TODO: Analyze the items list to group into different
+        // lists by consecutive element type (not so simple, actually)
+
+        self.children = list_items;
 
         // Look into the children to see if the
         // list is ordered. Defaults to unordered

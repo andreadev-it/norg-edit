@@ -1,7 +1,5 @@
+use crate::events::FileChosenEvent;
 use dioxus::prelude::*;
-
-use crate::components::Hamburger;
-use crate::utils::FileChosenEvent;
 
 #[component]
 pub fn Menu(is_open: Signal<bool>, on_file_chosen: EventHandler<FileChosenEvent>) -> Element {
@@ -28,26 +26,34 @@ pub fn Menu(is_open: Signal<bool>, on_file_chosen: EventHandler<FileChosenEvent>
             position: "absolute",
             display: "flex",
             flex_direction: "column",
-            gap: "10px",
             top: "0px",
             left: "0px",
             background_color: "#eee",
             height: "100%",
             min_width: "200px",
-            padding: "10px",
+            padding: "0px",
             box_sizing: "border-box",
             transform: if !is_open() {"translateX(-100%)"} else {"translateX(0)"},
             transition: "transform .3s",
 
             button {
+                display: "flex",
+                justify_content: "right",
+                color: "#fff",
+                font_weight: "bold",
+                border: "0px",
+                padding: "14px",
+                cursor: "pointer",
+                background: "linear-gradient(-45deg, #59b480, #4a3c95)",
                 onclick: move |_| *is_open.write() = false,
 
                 "Close"
             },
 
             label {
-                border: "solid 1px #aaa",
+                padding: "10px",
                 background_color: "#ededed",
+                border_bottom: "solid 1px #aaa",
 
                 input {
                     r#type: "file",
@@ -58,8 +64,6 @@ pub fn Menu(is_open: Signal<bool>, on_file_chosen: EventHandler<FileChosenEvent>
                 }
                 "Open file"
             },
-
-            "Menu"
         },
     }
 }

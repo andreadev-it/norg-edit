@@ -4,6 +4,7 @@ use dioxus::prelude::*;
 use dioxus_desktop::Config;
 
 mod components;
+mod events;
 mod macros;
 mod nodes;
 mod parse;

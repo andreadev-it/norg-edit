@@ -17,12 +17,6 @@ impl Range {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Default)]
-pub struct FileChosenEvent {
-    pub filename: String,
-    pub content: String,
-}
-
 // Easily extract ranges from NorgNodes (only works
 // with AttachedModifiers)
 pub fn get_node_range(node: &NorgNode) -> Result<Range> {
