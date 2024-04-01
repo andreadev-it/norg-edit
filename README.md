@@ -19,9 +19,15 @@ This is a highly WIP, do not try this at home
 - [ ] Create (or use norg-dirman) a workspace management system
 - [ ] Create an "options" page to setup workspaces
 - [ ] Make links work within a workspace (broader support for links)
-- *The workspace update is ready*
+- *The workspace MVP update is ready*
 - [ ] Add the verbatim ranged tags
 - [ ] check if the strong delimiting modifier works (not sure it does, but probably it works already)
-- *Layer 2 complete*
+- *Layer 2 complete*, but still some work to do
 - [ ] Add the detached modifier extensions (mostly todos)
-- We'll see what's next.
+- [ ] Add a fuzzy-finder for files inside the workspace (working with both the file name and title)
+- [ ] Add a way to create a new file
+- *The workspace update is ready*
+- [ ] Create a CI for building the various bundles. (I wouldn't trust downloading binaries compiled by other)
+- [ ] Check the code and look for way to improve it or optimize it. Is the way I'm enumerating the various nodes good enough?
+- [ ] Start working on the visual builder: planning
+- We'll see where we go next
