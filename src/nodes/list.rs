@@ -7,7 +7,7 @@ use tree_sitter::Node;
 #[derive(Debug, Clone, PartialEq, Default)]
 pub struct List {
     pub is_ordered: bool,
-    children: Vec<NorgNode>,
+    pub children: Vec<NorgNode>,
 }
 
 impl NodeItem for List {

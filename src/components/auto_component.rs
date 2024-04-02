@@ -6,6 +6,7 @@ use crate::nodes::heading::RenderHeading;
 use crate::nodes::inline_code::RenderInlineCode;
 use crate::nodes::italic::RenderItalic;
 use crate::nodes::list::RenderList;
+use crate::nodes::list_container::RenderListContainer;
 use crate::nodes::list_item::RenderListItem;
 use crate::nodes::paragraph::RenderParagraph;
 use crate::nodes::paragraph_segment::RenderParagraphSegment;
@@ -30,6 +31,9 @@ pub fn AutoComponent(node: NorgNode) -> Element {
         },
         NorgNode::ParagraphSegment(ps) => rsx! {
             RenderParagraphSegment { node: ps }
+        },
+        NorgNode::ListContainer(lc) => rsx! {
+            RenderListContainer { node: lc }
         },
         NorgNode::List(l) => rsx! {
             RenderList { node: l }

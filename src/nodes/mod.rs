@@ -10,6 +10,7 @@ pub mod heading;
 pub mod inline_code;
 pub mod italic;
 pub mod list;
+pub mod list_container;
 pub mod list_item;
 pub mod paragraph;
 pub mod paragraph_segment;
@@ -21,9 +22,9 @@ pub mod underline;
 
 use self::{
     bold::Bold, document::Document, heading::Heading, inline_code::InlineCode, italic::Italic,
-    list::List, list_item::ListItem, paragraph::Paragraph, paragraph_segment::ParagraphSegment,
-    spoiler::Spoiler, strikethrough::StrikeThrough, subscript::Subscript, superscript::Superscript,
-    underline::Underline,
+    list::List, list_container::ListContainer, list_item::ListItem, paragraph::Paragraph,
+    paragraph_segment::ParagraphSegment, spoiler::Spoiler, strikethrough::StrikeThrough,
+    subscript::Subscript, superscript::Superscript, underline::Underline,
 };
 
 #[derive(Debug, Clone, PartialEq)]
@@ -32,6 +33,7 @@ pub enum NorgNode {
     Heading(Heading),
     Paragraph(Paragraph),
     ParagraphSegment(ParagraphSegment),
+    ListContainer(ListContainer),
     List(List),
     ListItem(ListItem),
     // ATTACHED MODIFIERS
@@ -65,9 +67,9 @@ pub fn node_to_item<'a>(node: Node<'a>, source: &str) -> Result<NorgNode> {
             Ok(NorgNode::Heading(heading))
         }
         "list" => {
-            let mut list = list::List::default();
-            list.from_node(node, source)?;
-            Ok(NorgNode::List(list))
+            let mut container = list_container::ListContainer::default();
+            container.from_node(node, source)?;
+            Ok(NorgNode::ListContainer(container))
         }
         "unordered_list_item1"
         | "unordered_list_item2"
