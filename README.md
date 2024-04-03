@@ -3,7 +3,7 @@ This is a highly WIP, do not try this at home
 
 ## Next steps
 - [x] Make lists work (harder than it looks!)
-- [ ] Add support for links
+- [x] Add support for links
 - At this point support for Layer 1 should be complete (and even more than complete)
 - [ ] Add edit functionality (for now, just raw text editing)
 - [ ] Add quick buttons

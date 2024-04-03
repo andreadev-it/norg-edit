@@ -22,6 +22,7 @@ pub fn FileView() -> Element {
 
             div {
                 max_width: "80ch",
+                margin: "0 auto",
                 AutoComponent {
                     node: root_node
                 }

@@ -4,6 +4,7 @@ use dioxus::prelude::*;
 pub fn Hamburger(on_click: EventHandler<MouseEvent>) -> Element {
     rsx! {
         div {
+            justify_self: "start",
             width: "20px",
             padding: "4px",
             cursor: "pointer",

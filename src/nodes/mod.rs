@@ -9,6 +9,7 @@ pub mod document;
 pub mod heading;
 pub mod inline_code;
 pub mod italic;
+pub mod link;
 pub mod list;
 pub mod list_container;
 pub mod list_item;
@@ -22,9 +23,10 @@ pub mod underline;
 
 use self::{
     bold::Bold, document::Document, heading::Heading, inline_code::InlineCode, italic::Italic,
-    list::List, list_container::ListContainer, list_item::ListItem, paragraph::Paragraph,
-    paragraph_segment::ParagraphSegment, spoiler::Spoiler, strikethrough::StrikeThrough,
-    subscript::Subscript, superscript::Superscript, underline::Underline,
+    link::Link, list::List, list_container::ListContainer, list_item::ListItem,
+    paragraph::Paragraph, paragraph_segment::ParagraphSegment, spoiler::Spoiler,
+    strikethrough::StrikeThrough, subscript::Subscript, superscript::Superscript,
+    underline::Underline,
 };
 
 #[derive(Debug, Clone, PartialEq)]
@@ -36,6 +38,7 @@ pub enum NorgNode {
     ListContainer(ListContainer),
     List(List),
     ListItem(ListItem),
+    Link(Link),
     // ATTACHED MODIFIERS
     Bold(Bold),
     Italic(Italic),
@@ -136,6 +139,11 @@ pub fn node_to_item<'a>(node: Node<'a>, source: &str) -> Result<NorgNode> {
             let mut c = InlineCode::default();
             c.from_node(node, source)?;
             Ok(NorgNode::InlineCode(c))
+        }
+        "link" => {
+            let mut a = Link::default();
+            a.from_node(node, source)?;
+            Ok(NorgNode::Link(a))
         }
         _ => Err(anyhow::anyhow!("Unsupported node type: {}", node.kind())),
     }

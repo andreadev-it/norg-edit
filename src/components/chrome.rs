@@ -10,8 +10,9 @@ pub fn Chrome(current_file: String, on_file_chosen: EventHandler<FileChosenEvent
 
     rsx! {
         div {
-            display: "flex",
-            justify_content: "space-between",
+            display: "grid",
+            grid_template_columns: "40px 1fr 40px",
+            justify_items: "center",
             align_items: "center",
             padding: "10px",
             background: "linear-gradient(-45deg, #59b480, #4a3c95)",

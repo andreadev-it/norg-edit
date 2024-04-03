@@ -5,6 +5,7 @@ use crate::nodes::document::RenderDocument;
 use crate::nodes::heading::RenderHeading;
 use crate::nodes::inline_code::RenderInlineCode;
 use crate::nodes::italic::RenderItalic;
+use crate::nodes::link::RenderLink;
 use crate::nodes::list::RenderList;
 use crate::nodes::list_container::RenderListContainer;
 use crate::nodes::list_item::RenderListItem;
@@ -64,6 +65,9 @@ pub fn AutoComponent(node: NorgNode) -> Element {
         },
         NorgNode::InlineCode(s) => rsx! {
             RenderInlineCode { node: s }
+        },
+        NorgNode::Link(a) => rsx! {
+            RenderLink { node: a }
         },
     }
 }

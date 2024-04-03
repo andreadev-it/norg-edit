@@ -29,6 +29,7 @@ pub fn get_node_range(node: &NorgNode) -> Result<Range> {
         NorgNode::Subscript(n) => Ok(n.textrange),
         NorgNode::Spoiler(n) => Ok(n.textrange),
         NorgNode::InlineCode(n) => Ok(n.textrange),
+        NorgNode::Link(n) => Ok(n.textrange),
         _ => Err(anyhow!("This is not an attached modifier")),
     }
 }
