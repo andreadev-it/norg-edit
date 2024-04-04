@@ -740,6 +740,7 @@ dependencies = [
  "dioxus-hot-reload",
  "dioxus-html",
  "dioxus-mobile",
+ "dioxus-router",
  "dioxus-signals",
 ]
 
@@ -964,6 +965,32 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "594bd30bb8c8a3c29b250c7387dfa6ca8f639ff206addc24bd35b20ed729d6a8"
 dependencies = [
  "dioxus-desktop",
+]
+
+[[package]]
+name = "dioxus-router"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0c4cbbc1aff811aa3715c94a7ca0375be0be34356aba7f3897328d844323519b"
+dependencies = [
+ "dioxus-cli-config",
+ "dioxus-lib",
+ "dioxus-router-macro",
+ "tracing",
+ "url",
+ "urlencoding",
+]
+
+[[package]]
+name = "dioxus-router-macro"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0a1b089ef30c7c31ad888016454d2508209c619bda09f57c877e799866e4df22"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "slab",
+ "syn 2.0.57",
 ]
 
 [[package]]

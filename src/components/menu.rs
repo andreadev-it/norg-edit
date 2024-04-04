@@ -45,7 +45,7 @@ pub fn Menu(is_open: Signal<bool>, on_file_chosen: EventHandler<FileChosenEvent>
                 padding: "14px",
                 cursor: "pointer",
                 background: "linear-gradient(-45deg, #59b480, #4a3c95)",
-                onclick: move |_| *is_open.write() = false,
+                onclick: move |_| is_open.set(false),
 
                 "Close"
             },

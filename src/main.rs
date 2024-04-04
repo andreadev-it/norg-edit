@@ -1,5 +1,6 @@
 #![allow(non_snake_case)]
 use crate::components::App;
+use crate::components::Route;
 use dioxus::prelude::*;
 use dioxus_desktop::Config;
 

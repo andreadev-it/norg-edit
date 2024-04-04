@@ -1,10 +1,11 @@
 use crate::components::Hamburger;
 use crate::components::Menu;
 use crate::events::FileChosenEvent;
+use crate::Route;
 use dioxus::prelude::*;
 
 #[component]
-pub fn Chrome(current_file: String, on_file_chosen: EventHandler<FileChosenEvent>) -> Element {
+pub fn Chrome(current_file_name: String, on_file_chosen: EventHandler<FileChosenEvent>) -> Element {
     // I want it to be a bool, but I can't make it work
     let mut is_menu_open = use_signal(|| false);
 
@@ -20,19 +21,17 @@ pub fn Chrome(current_file: String, on_file_chosen: EventHandler<FileChosenEvent
             font_weight: "bold",
 
             Hamburger {
-                on_click: move |_| *is_menu_open.write() = true,
+                on_click: move |_| is_menu_open.set(true),
             },
 
-            "{current_file}",
+            "File: {current_file_name}",
 
-            button {
-                "edit"
-            }
+            Link { to: Route::EditView {}, "Edit" }
         },
         Menu {
             is_open: is_menu_open,
             on_file_chosen: move |evt| {
-                *is_menu_open.write() = false;
+                is_menu_open.set(false);
                 on_file_chosen(evt);
             }
         }
