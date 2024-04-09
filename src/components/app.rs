@@ -2,6 +2,7 @@ use crate::components::{Chrome, EditView, FileView};
 use crate::events::FileChosenEvent;
 use dioxus::prelude::*;
 use std::fs;
+use std::path::Path;
 
 #[derive(Routable, Clone, Debug, PartialEq)]
 #[rustfmt::skip]
@@ -17,14 +18,43 @@ pub enum Route {
 #[derive(Default)]
 pub struct AppState {
     pub current_file: Option<String>,
+    pub current_file_name: String,
     pub text_content: String,
     pub should_save_file: bool,
+}
+
+impl AppState {
+    pub fn read_current_file(&mut self) -> Result<(), ()> {
+        if let Some(file) = &self.current_file {
+            let file_path = Path::new(&file);
+            if let Ok(text) = fs::read_to_string(file_path) {
+                self.text_content = text;
+                self.should_save_file = false;
+            }
+        }
+
+        Ok(())
+    }
+
+    pub fn read_file(&mut self, file: &String) -> Result<(), ()> {
+        let file_path = Path::new(&file);
+
+        if let Ok(text) = fs::read_to_string(file_path) {
+            self.current_file = Some(file.clone());
+            self.current_file_name = file_path.file_name().unwrap().to_str().unwrap().to_string();
+            self.text_content = text;
+            self.should_save_file = false;
+        }
+
+        Ok(())
+    }
 }
 
 #[component]
 pub fn App() -> Element {
     let state = use_signal(|| AppState {
         current_file: None,
+        current_file_name: "".to_string(),
         text_content: "Select a file in the menu".to_string(),
         should_save_file: false,
     });
@@ -38,20 +68,7 @@ pub fn App() -> Element {
 
 #[component]
 pub fn Layout() -> Element {
-    let mut app_state = use_context::<Signal<AppState>>();
-
-    let mut current_file_name = use_signal(|| "".to_string());
-
-    // This function will put the updated file into the state
-    let file_chosen = move |evt: FileChosenEvent| {
-        let filepath = std::path::Path::new(&evt.filename);
-        let filename = filepath.file_name().unwrap();
-
-        current_file_name.set(filename.to_str().unwrap().to_string());
-
-        app_state.write().current_file = Some(filepath.to_str().unwrap().to_string());
-        app_state.write().text_content = evt.content;
-    };
+    let app_state = use_context::<Signal<AppState>>();
 
     // This effect is used for saving the file
     use_effect(move || {
@@ -64,10 +81,7 @@ pub fn Layout() -> Element {
     });
 
     rsx! {
-        Chrome {
-            current_file_name,
-            on_file_chosen: file_chosen
-        },
+        Chrome {},
         Outlet::<Route> {}
     }
 }

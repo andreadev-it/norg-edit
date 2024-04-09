@@ -1,13 +1,12 @@
+use crate::components::AppState;
 use crate::components::Hamburger;
 use crate::components::Menu;
-use crate::events::FileChosenEvent;
-use crate::Route;
 use dioxus::prelude::*;
 
 #[component]
-pub fn Chrome(current_file_name: String, on_file_chosen: EventHandler<FileChosenEvent>) -> Element {
-    // I want it to be a bool, but I can't make it work
+pub fn Chrome() -> Element {
     let mut is_menu_open = use_signal(|| false);
+    let app_state = use_context::<Signal<AppState>>();
 
     rsx! {
         div {
@@ -24,16 +23,11 @@ pub fn Chrome(current_file_name: String, on_file_chosen: EventHandler<FileChosen
                 on_click: move |_| is_menu_open.set(true),
             },
 
-            "File: {current_file_name}",
+            "File: {app_state.read().current_file_name}",
 
-            Link { to: Route::EditView {}, "Edit" }
         },
         Menu {
             is_open: is_menu_open,
-            on_file_chosen: move |evt| {
-                is_menu_open.set(false);
-                on_file_chosen(evt);
-            }
         }
     }
 }

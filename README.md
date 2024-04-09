@@ -7,9 +7,11 @@ This is a highly WIP, do not try this at home
 - At this point support for Layer 1 should be complete (and even more than complete)
 - [x] Add edit functionality (for now, just raw text editing)
 - [ ] Add quick buttons
-  - [ ] Edit document
+  - [x] Edit document
   - [ ] Toggle folding (open all/close all)
-  - [ ] Reload file
+  - [x] Reload file
+  - [ ] Save file (when on edit mode)
+- [ ] Add quotes
 - [ ] Improve style for headers and other components
 - [ ] Find a way to build it correctly for Windows and Linux
 - [ ] Test the android build

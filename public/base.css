@@ -29,3 +29,11 @@ details.heading summary h6 {
     margin: 0;
     vertical-align: sub;
 }
+
+.white-icon {
+    filter: invert(1);
+}
+
+.lighten-on-hover:hover {
+    filter: brightness(1.3);
+}

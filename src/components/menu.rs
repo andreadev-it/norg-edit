@@ -1,22 +1,18 @@
-use crate::events::FileChosenEvent;
+use crate::components::AppState;
 use dioxus::prelude::*;
 
 #[component]
-pub fn Menu(is_open: Signal<bool>, on_file_chosen: EventHandler<FileChosenEvent>) -> Element {
+pub fn Menu(is_open: Signal<bool>) -> Element {
+    let mut app_state = use_context::<Signal<AppState>>();
+
     let filepicker_changed = move |evt: FormEvent| async move {
         if let Some(file_engine) = &evt.files() {
             let files = file_engine.files();
             let selected = files.first();
 
             if let Some(selected) = selected {
-                if let Some(file) = file_engine.read_file_to_string(selected).await {
-                    let file_event = FileChosenEvent {
-                        filename: selected.clone(),
-                        content: file,
-                    };
-
-                    on_file_chosen(file_event);
-                }
+                let _ = app_state.write().read_file(selected);
+                is_open.set(false);
             }
         }
     };
@@ -54,6 +50,7 @@ pub fn Menu(is_open: Signal<bool>, on_file_chosen: EventHandler<FileChosenEvent>
                 padding: "10px",
                 background_color: "#ededed",
                 border_bottom: "solid 1px #aaa",
+                cursor: "pointer",
 
                 input {
                     r#type: "file",
