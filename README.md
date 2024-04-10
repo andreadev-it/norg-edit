@@ -10,7 +10,7 @@ This is a highly WIP, do not try this at home
   - [x] Edit document
   - [ ] Toggle folding (open all/close all)
   - [x] Reload file
-  - [ ] Save file (when on edit mode)
+  - [x] Save file (when on edit mode)
 - [ ] Add quotes
 - [ ] Improve style for headers and other components
 - [ ] Find a way to build it correctly for Windows and Linux

@@ -10,7 +10,6 @@ mod quick_actions;
 
 pub use app::{App, AppState, Route};
 pub use auto_component::AutoComponent;
-pub use buttons::QuickButton;
 pub use chrome::Chrome;
 pub use edit_view::EditView;
 pub use file_view::FileView;

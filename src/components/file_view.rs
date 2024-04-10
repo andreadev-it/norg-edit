@@ -1,4 +1,4 @@
-use crate::components::buttons::QuickActionButton;
+use crate::components::buttons::{QuickActionButton, QuickMultiButton};
 use crate::components::{AppState, AutoComponent, QuickActions};
 use crate::nodes::{node_to_item, NorgNode};
 use crate::parse::parse_text;
@@ -36,18 +36,23 @@ pub fn FileView() -> Element {
             }
 
             QuickActions {
-                QuickActionButton {
-                    on_click: refresh,
-                    icon: "../icons/refresh.svg",
-                    text: "Refresh"
-                },
-                QuickActionButton {
-                    on_click: move |_evt| {
-                        router().push(Route::EditView {});
+                QuickMultiButton {
+                    open_icon: "../icons/more.svg",
+                    close_icon: "../icons/close.svg",
+
+                    QuickActionButton {
+                        on_click: refresh,
+                        icon: "../icons/refresh.svg",
+                        text: "Refresh"
                     },
-                    icon: "../icons/edit.svg",
-                    text: "Edit"
-                },
+                    QuickActionButton {
+                        on_click: move |_evt| {
+                            router().push(Route::EditView {});
+                        },
+                        icon: "../icons/edit.svg",
+                        text: "Edit"
+                    },
+                }
             }
         }
     }

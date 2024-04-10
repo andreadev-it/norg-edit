@@ -1,4 +1,5 @@
-use crate::components::AppState;
+use crate::components::buttons::QuickButton;
+use crate::components::{AppState, QuickActions};
 use dioxus::prelude::*;
 
 #[component]
@@ -16,6 +17,10 @@ pub fn EditView() -> Element {
         router().push("/");
     };
 
+    let cancel_changes = move |_: MouseEvent| {
+        router().push("/");
+    };
+
     rsx! {
         textarea {
             oninput: move |evt| {
@@ -24,9 +29,16 @@ pub fn EditView() -> Element {
 
             "{edited_text}"
         }
-        button {
-            onclick: save_changes,
-            "Save"
+
+        QuickActions {
+            QuickButton {
+                on_click: save_changes,
+                icon: "../icons/save.svg"
+            }
+            QuickButton {
+                on_click: cancel_changes,
+                icon: "../icons/close.svg"
+            }
         }
     }
 }
